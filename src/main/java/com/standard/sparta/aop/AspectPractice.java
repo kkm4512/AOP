@@ -3,6 +3,7 @@ package com.standard.sparta.aop;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Aspect : module // advice + pointcut
@@ -43,10 +44,13 @@ public class AspectPractice {
     @Pointcut("@annotation(com.standard.sparta.annotation.TrackTime)")
     private void trackTimeAnnotation(){}
 
+    @Pointcut("@annotation(org.springframework.transaction.annotation.Transactional)")
+    private void transactionalAnnotation(){}
+
     /**
      * advice : 어노테이션 범위 기반
      */
-    @Around("trackTimeAnnotation()")
+    @Around("transactionalAnnotation()")
     public Object adviceAnnotation(ProceedingJoinPoint pjp) throws Throwable {
         Long start = System.currentTimeMillis();
         try {

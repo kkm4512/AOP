@@ -46,7 +46,7 @@ public class CourseService {
     /**
      * 수업 목록 조회 서비스
      */
-    @TrackTime
+    @Transactional
     public CourseListResponseDto getCourseList() {
 
         // 조회: 수업 엔티티 목록 조회
